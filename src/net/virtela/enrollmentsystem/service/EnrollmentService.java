@@ -12,7 +12,7 @@ import net.virtela.enrollmentsystem.model.Schedule;
 import net.virtela.enrollmentsystem.model.Subject;
 import net.virtela.enrollmentsystem.model.Teacher;
 
-public class AdministrationService {
+public class EnrollmentService {
 
 	private SubjectDao subjectDao = ServiceRegistry.getInstance(SubjectDao.class);
 	private ScheduleDao scheduleDao = ServiceRegistry.getInstance(ScheduleDao.class);

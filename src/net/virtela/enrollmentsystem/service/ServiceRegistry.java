@@ -27,7 +27,7 @@ public class ServiceRegistry {
 		instanceMap.put(TeacherDao.class, new TeacherDao());
 		instanceMap.put(ClazzDao.class, new ClazzDao());
 		instanceMap.put(SecurityService.class, new SecurityService());
-		instanceMap.put(AdministrationService.class, new AdministrationService());
+		instanceMap.put(EnrollmentService.class, new EnrollmentService());
 	}
 
 	@SuppressWarnings("unchecked")
