@@ -35,6 +35,10 @@ public class EnrollmentService {
 		return clazzDao.findAll();
 	}
 
+	public List<Clazz> findAllEnrolledClassesByStudentId(Long studentId) {
+		return clazzDao.findAllEnrolledByStudentId(studentId);
+	}
+
 	public void addClazz(Long subjectId, Long scheduleId, Long teacherId) throws ClazzAlreadyExistsException {
 		clazzDao.add(subjectId, scheduleId, teacherId);
 	}

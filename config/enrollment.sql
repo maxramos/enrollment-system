@@ -1,3 +1,4 @@
+drop view v_enrolled_clazz;
 drop view v_clazz;
 drop view v_user_roles;
 drop table enrolled_clazz;
@@ -84,7 +85,12 @@ create view v_clazz as
 		join schedule sched on sched.id = cl.schedule_fk
 		join teacher teach on teach.id = cl.teacher_fk
 	order by cl.id;
-
+	
+create view v_enrolled_clazz as
+	select ec.student_id, cl.*
+	from enrolled_clazz ec join v_clazz cl on ec.clazz_id = cl.clazz_id
+	order by ec.student_id, ec.clazz_id
+	
 create sequence clazz_seq start with 1;
 
 insert into subject values (1, 'Math', 'U');
