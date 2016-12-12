@@ -53,7 +53,6 @@ public class ClazzDao {
 				return classes;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
