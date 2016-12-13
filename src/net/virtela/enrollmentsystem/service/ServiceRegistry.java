@@ -26,7 +26,7 @@ public class ServiceRegistry {
 		instanceMap.put(ScheduleDao.class, new ScheduleDao());
 		instanceMap.put(TeacherDao.class, new TeacherDao());
 		instanceMap.put(ClazzDao.class, new ClazzDao());
-		instanceMap.put(SecurityService.class, new SecurityService());
+		instanceMap.put(UserService.class, new UserService());
 		instanceMap.put(EnrollmentService.class, new EnrollmentService());
 	}
 

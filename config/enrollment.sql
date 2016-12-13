@@ -1,3 +1,4 @@
+drop sequence clazz_seq;
 drop view v_enrolled_clazz;
 drop view v_clazz;
 drop view v_user_roles;
@@ -10,7 +11,6 @@ drop table clazz;
 drop table teacher;
 drop table schedule;
 drop table subject;
-drop sequence clazz_seq;
 
 grant all privileges to enrollment;
 
@@ -56,9 +56,8 @@ create table user_roles (
 );
 
 create table student (
-	id number(19) primary key,
-	name varchar2(50) not null,
-	users_fk number(19) not null references users (id)
+	id number(19) primary key references users (id),
+	name varchar2(50) not null
 );
 
 create table enrolled_clazz (
@@ -89,7 +88,7 @@ create view v_clazz as
 create view v_enrolled_clazz as
 	select ec.student_id, cl.*
 	from enrolled_clazz ec join v_clazz cl on ec.clazz_id = cl.clazz_id
-	order by ec.student_id, ec.clazz_id
+	order by ec.student_id, ec.clazz_id;
 	
 create sequence clazz_seq start with 1;
 
@@ -127,8 +126,8 @@ insert into user_roles values ('1', '1');
 insert into user_roles values ('2', '2');
 insert into user_roles values ('3', '2');
 
-insert into student values (1, 'Max Ramos', 2);
-insert into student values (2, 'Romel Quitasol', 3);
+insert into student values (2, 'Max Ramos');
+insert into student values (3, 'Romel Quitasol');
 
 select * from subject;
 select * from schedule;
@@ -140,3 +139,5 @@ select * from user_roles;
 select * from student;
 select * from enrolled_clazz;
 select * from v_user_roles;
+select * from v_clazz;
+select * from v_enrolled_clazz;

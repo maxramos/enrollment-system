@@ -95,7 +95,7 @@ public class ClazzDao {
 		}
 	}
 
-	public void add(Long subjectId, Long scheduleId, Long teacherId) throws ClazzAlreadyExistsException {
+	public boolean add(Long subjectId, Long scheduleId, Long teacherId) {
 		try (Connection conn = datasource.getConnection();
 				PreparedStatement ps = conn.prepareStatement("insert into clazz values(clazz_seq.nextval, ?, ?, ?)")) {
 			ps.setLong(1, subjectId);
@@ -103,11 +103,34 @@ public class ClazzDao {
 			ps.setLong(3, teacherId);
 			int rowCount = ps.executeUpdate();
 
-			if (rowCount == 1) {
-				conn.commit();
+			if (rowCount == 0) {
+				return false;
 			}
+
+			conn.commit();
+			return true;
 		} catch (SQLIntegrityConstraintViolationException e) {
-			throw new ClazzAlreadyExistsException(e);
+			return false;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public boolean enroll(Long studentId, Long clazzId) {
+		try (Connection conn = datasource.getConnection();
+				PreparedStatement ps = conn.prepareStatement("insert into enrolled_clazz values(?, ?)")) {
+			ps.setLong(1, studentId);
+			ps.setLong(2, clazzId);
+			int rowCount = ps.executeUpdate();
+
+			if (rowCount == 0) {
+				return false;
+			}
+
+			conn.commit();
+			return true;
+		} catch (SQLIntegrityConstraintViolationException e) {
+			return false;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

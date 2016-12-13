@@ -38,7 +38,7 @@
 		<table border="1">
 			<c:forEach var="clazz" items="${sessionScope['classes']}">
 				<tr>
-					<td>[${clazz.subject.type.code}]${clazz.subject.name}</td>
+					<td>[${clazz.subject.type.code}] ${clazz.subject.name}</td>
 					<td>${clazz.schedule.period}</td>
 					<td>${clazz.teacher.name}</td>
 				</tr>
