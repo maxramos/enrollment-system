@@ -25,4 +25,10 @@ public class Student extends User {
 		this.enrolledClasses = enrolledClasses;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Student [getId()=%s, getUsername()=%s, name=%s, enrolledClasses=%s]", getId(),
+				getUsername(), name, enrolledClasses);
+	}
+
 }

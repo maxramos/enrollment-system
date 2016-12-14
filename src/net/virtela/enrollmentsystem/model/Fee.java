@@ -1,13 +1,15 @@
 package net.virtela.enrollmentsystem.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
-public class User implements Serializable {
+public class Fee implements Serializable {
 
-	private static final long serialVersionUID = -1178211008930755514L;
+	private static final long serialVersionUID = -7349722186595848066L;
 
 	private Long id;
-	private String username;
+	private String type;
+	private BigDecimal amount;
 
 	public Long getId() {
 		return id;
@@ -17,12 +19,20 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getType() {
+		return type;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 
 	@Override
@@ -44,7 +54,7 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		User other = (User) obj;
+		Fee other = (Fee) obj;
 		if (id == null) {
 			if (other.id != null) {
 				return false;
@@ -57,7 +67,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("User [id=%s, username=%s]", id, username);
+		return String.format("Fee [id=%s, type=%s, amount=%s]", id, type, amount);
 	}
 
 }

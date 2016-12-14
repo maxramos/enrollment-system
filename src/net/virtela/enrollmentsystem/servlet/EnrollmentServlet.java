@@ -14,7 +14,7 @@ import net.virtela.enrollmentsystem.service.EnrollmentService;
 import net.virtela.enrollmentsystem.service.ServiceRegistry;
 import net.virtela.enrollmentsystem.service.UserService;
 
-@WebServlet(urlPatterns = "/protected/enrollment", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/protected/student/enrollment", loadOnStartup = 1)
 public class EnrollmentServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -6927792824352858041L;

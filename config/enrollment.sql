@@ -2,6 +2,7 @@ drop sequence clazz_seq;
 drop view v_enrolled_clazz;
 drop view v_clazz;
 drop view v_user_roles;
+drop table fee;
 drop table enrolled_clazz;
 drop table student;
 drop table user_roles;
@@ -64,6 +65,12 @@ create table enrolled_clazz (
 	student_id number(19) references student (id),
 	clazz_id number(19) references clazz (id),
 	constraint enrolled_clazz_pk primary key (student_id, clazz_id)
+);
+
+create table fee (
+	id number(19) primary key,
+	fee_type varchar2(50) not null unique,
+	amount number(21,2) not null
 );
 
 create view v_user_roles as
@@ -129,6 +136,10 @@ insert into user_roles values ('3', '2');
 insert into student values (2, 'Max Ramos');
 insert into student values (3, 'Romel Quitasol');
 
+insert into fee values (1, 'UNDERGRADUATE', 2000.00);
+insert into fee values (2, 'GRADUATE', 4000.00);
+insert into fee values (3, 'MISCELLANEOUS', 2000.00);
+
 select * from subject;
 select * from schedule;
 select * from teacher;
@@ -138,6 +149,7 @@ select * from roles;
 select * from user_roles;
 select * from student;
 select * from enrolled_clazz;
+select * from fee;
 select * from v_user_roles;
 select * from v_clazz;
 select * from v_enrolled_clazz;

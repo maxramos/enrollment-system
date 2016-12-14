@@ -1,12 +1,18 @@
 package net.virtela.enrollmentsystem.service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.virtela.enrollmentsystem.dao.ClazzDao;
+import net.virtela.enrollmentsystem.dao.FeeDao;
 import net.virtela.enrollmentsystem.dao.ScheduleDao;
 import net.virtela.enrollmentsystem.dao.SubjectDao;
 import net.virtela.enrollmentsystem.dao.TeacherDao;
 import net.virtela.enrollmentsystem.model.Clazz;
+import net.virtela.enrollmentsystem.model.Fee;
 import net.virtela.enrollmentsystem.model.Schedule;
 import net.virtela.enrollmentsystem.model.Student;
 import net.virtela.enrollmentsystem.model.Subject;
@@ -19,6 +25,7 @@ public class EnrollmentService {
 	private ScheduleDao scheduleDao = ServiceRegistry.getInstance(ScheduleDao.class);
 	private TeacherDao teacherDao = ServiceRegistry.getInstance(TeacherDao.class);
 	private ClazzDao clazzDao = ServiceRegistry.getInstance(ClazzDao.class);
+	private FeeDao feeDao = ServiceRegistry.getInstance(FeeDao.class);
 
 	public List<Subject> findAllSubjects() {
 		return subjectDao.findAll();
@@ -52,7 +59,16 @@ public class EnrollmentService {
 	}
 
 	public Tuition calculateTuition(Student student) {
-		return new Tuition(student.getEnrolledClasses());
+		Map<String, Fee> feeMap = feeDao.findAllAsMap();
+		Map<Clazz, BigDecimal> courseFeeMap = new LinkedHashMap<>();
+		student.getEnrolledClasses().stream()
+		.forEachOrdered(clazz -> courseFeeMap.put(clazz, feeMap.get(clazz.getSubjectTypeAsString()).getAmount()));
+
+		Tuition tuition = new Tuition();
+		tuition.setCourseFeeList(new ArrayList<>(courseFeeMap.entrySet()));
+		tuition.setMiscellaneous(feeMap.get("MISCELLANEOUS").getAmount());
+		tuition.calculateTotal();
+		return tuition;
 	}
 
 }

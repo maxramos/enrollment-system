@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div>
-		User: ${sessionScope['currentUser'].username}
+		User: ${currentUser.username}
 		<a href="${pageContext.request.contextPath}/logout">Logout</a>
 	</div>
 </body>

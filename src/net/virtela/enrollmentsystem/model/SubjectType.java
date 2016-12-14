@@ -4,8 +4,8 @@ import java.util.stream.Stream;
 
 public enum SubjectType {
 
-	GRADUATE("G"),
-	UNDERGRADUATE("U");
+	UNDERGRADUATE("U"),
+	GRADUATE("G");
 
 	private String code;
 
@@ -14,7 +14,7 @@ public enum SubjectType {
 	}
 
 	public static SubjectType fromCode(String code) {
-		return Stream.of(SubjectType.values()).filter(x -> x.code.equals(code)).findFirst().get();
+		return Stream.of(SubjectType.values()).filter(subjectType -> subjectType.code.equals(code)).findFirst().get();
 	}
 
 	public String getCode() {

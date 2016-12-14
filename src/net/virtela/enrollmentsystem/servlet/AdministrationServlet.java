@@ -13,7 +13,7 @@ import net.virtela.enrollmentsystem.service.EnrollmentService;
 import net.virtela.enrollmentsystem.service.ServiceRegistry;
 import net.virtela.enrollmentsystem.service.UserService;
 
-@WebServlet(urlPatterns = "/protected/administration", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/protected/admin/administration", loadOnStartup = 1)
 public class AdministrationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -8488608435479164803L;

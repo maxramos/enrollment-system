@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.sql.DataSource;
 
 import net.virtela.enrollmentsystem.dao.ClazzDao;
+import net.virtela.enrollmentsystem.dao.FeeDao;
 import net.virtela.enrollmentsystem.dao.ScheduleDao;
 import net.virtela.enrollmentsystem.dao.SubjectDao;
 import net.virtela.enrollmentsystem.dao.TeacherDao;
@@ -26,6 +27,7 @@ public class ServiceRegistry {
 		instanceMap.put(ScheduleDao.class, new ScheduleDao());
 		instanceMap.put(TeacherDao.class, new TeacherDao());
 		instanceMap.put(ClazzDao.class, new ClazzDao());
+		instanceMap.put(FeeDao.class, new FeeDao());
 		instanceMap.put(UserService.class, new UserService());
 		instanceMap.put(EnrollmentService.class, new EnrollmentService());
 	}

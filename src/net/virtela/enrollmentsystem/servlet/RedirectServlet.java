@@ -17,10 +17,10 @@ public class RedirectServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.isUserInRole("admin")) {
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/protected/administration");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/protected/admin/administration");
 			dispatcher.forward(req, resp);
 		} else if (req.isUserInRole("student")) {
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/protected/enrollment");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/protected/student/enrollment");
 			dispatcher.forward(req, resp);
 		} else {
 			resp.sendError(HttpServletResponse.SC_FORBIDDEN);
